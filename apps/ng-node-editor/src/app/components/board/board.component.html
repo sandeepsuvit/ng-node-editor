@@ -1,0 +1,41 @@
+<div #boardWrapper class="wrapper">
+  <app-button
+    (nodeAddedEvent)="handleOnClickNodeAddEvent($event)"
+    [showDelete]="selectedNodeId !== null"
+    (nodeDeleteEvent)="handleOnClickNodeDeleteEvent($event)"
+  ></app-button>
+  <div
+    #board
+    class="board"
+    [ngClass]="isGrabbing ? 'dragging' : 'no-dragging'"
+    (mousedown)="handleOnMouseDownBoardEvent($event)"
+    (mouseup)="handleOnMouseUpBoardEvent()"
+    (mousemove)="handleOnMouseMoveBoardEvent($event)"
+  >
+    <!-- Render the nodes on the board -->
+    <ng-container *ngFor="let node of nodes">
+      <app-node
+        [node]="node"
+        [selected]="selectedNodeId === node.id"
+        (mouseDownNodeEvent)="handleOnMouseDownNodeEvent($event)"
+        (mouseDownNodeOutputEvent)="handleOnMouseDownNodeOutputEvent($event)"
+        (mouseEnterNodeInputEvent)="handleOnMouseEnterNodeInputEvent($event)"
+        (mouseLeaveNodeInputEvent)="handleOnMouseLeaveNodeInputEvent($event)"
+      ></app-node>
+    </ng-container>
+    <!-- Start rendering the new edge -->
+    <ng-container *ngIf="newEdge">
+      <app-edge [selected]="false" [isNew]="true" [edge]="newEdge"></app-edge>
+    </ng-container>
+    <!-- Render the edges on the board -->
+    <ng-container *ngFor="let edge of edges">
+      <app-edge
+        [selected]="selectedEdgeId === edge.id"
+        [isNew]="false"
+        [edge]="edge"
+        (mouseDownEdgeEvent)="handleOnMouseDownEdgeEvent($event)"
+        (deleteEdgeEvent)="handleOnDeleteEdgeEvent($event)"
+      ></app-edge>
+    </ng-container>
+  </div>
+</div>

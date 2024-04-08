@@ -1,0 +1,32 @@
+<div
+  class="node"
+  [ngClass]="selected ? 'node-selected' : 'node-unselected'"
+  [style.transform]="getTransforms()"
+  (mousedown)="handleOnMouseDown($event)"
+>
+  <div class="inputs-wrapper">
+    <ng-container
+      *ngFor="let input of toArrayOfNumbers(this.node.inputs); index as i"
+    >
+      <div
+        #inputRef
+        class="input"
+        (mouseenter)="handleMouseEnterInput(inputRef, i)"
+        (mouseleave)="handleMouseLeaveInput(i)"
+      ></div>
+    </ng-container>
+  </div>
+  <div class="outputs-wrapper">
+    <ng-container
+      *ngFor="let output of toArrayOfNumbers(this.node.outputs); index as i"
+    >
+      <div
+        #outputRef
+        class="output"
+        (mousedown)="handleMouseDownOutput(outputRef, $event, i)"
+        (mouseenter)="handleMouseEnterInput(outputRef, i)"
+        (mouseleave)="handleMouseLeaveInput(i)"
+      ></div>
+    </ng-container>
+  </div>
+</div>

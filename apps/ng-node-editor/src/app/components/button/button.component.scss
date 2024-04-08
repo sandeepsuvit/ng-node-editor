@@ -1,0 +1,118 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px 38px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  z-index: 300;
+  // This will disable all pointer events to self and child elements
+  // To enable the events on the child will need to set it explisitly
+  pointer-events: none;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-round {
+  transition: all ease 0.2s;
+  padding: 0.5rem;
+  border-radius: 100%;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  pointer-events: all;
+  box-shadow: 1px 1px 11px -6px rgba(0, 0, 0, 0.75);
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    box-shadow: 2px 2px 12px -6px rgba(0, 0, 0, 0.75);
+    transform: scale(1.05);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &-add {
+    background-color: #4f46e5;
+    &:hover {
+      background-color: #3730a3;
+    }
+  }
+  &-delete {
+    background-color: #dc2626;
+    &:hover {
+      background-color: #b91c1c;
+    }
+  }
+}
+
+.dropdown {
+  pointer-events: all;
+  position: absolute;
+  top: 86px;
+  flex-direction: column;
+  background-color: #fff;
+  border: 2px solid #c4c4c4;
+  border-radius: 0.2rem;
+  box-shadow: 1px 1px 11px -6px rgba(0, 0, 0, 0.75);
+  padding: 12px;
+  transition: all ease 0.2s;
+  width: 15rem;
+  .label {
+    line-height: 1.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #27272a;
+  }
+  .input {
+    line-height: 1.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #27272a;
+    border-radius: 0.375rem;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background-color: #fff;
+    border: 1px solid #b2b3b5;
+    box-shadow: 1px 1px 11px -6px rgba(0, 0, 0, 0.75);
+    margin-bottom: 12px;
+    box-sizing: border-box;
+  }
+  .btn {
+    transition: all ease 0.2s;
+    background-color: #4f46e5;
+    padding: 12px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    pointer-events: all;
+    box-shadow: 1px 1px 11px -6px rgba(0, 0, 0, 0.75);
+    outline: none;
+    border: none;
+    &:hover {
+      background-color: #3730a3;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+    &:disabled {
+      background-color: lighten($color: #3730a3, $amount: 20);
+      pointer-events: none;
+    }
+    &-cancel {
+      background-color: grey;
+      &:hover {
+        background-color: darken($color: grey, $amount: 10);
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
